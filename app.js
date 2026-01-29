@@ -264,5 +264,12 @@ function clearCanvas() {
     state.ctx.clearRect(0, 0, ui.canvas.width, ui.canvas.height);
 }
 
+function updateCursor(e) {
+    if (state.mode !== 'erase') return;
+    const pos = getPos(e);
+    ui.cursor.style.left = pos.x + 'px';
+    ui.cursor.style.top = pos.y + 'px';
+}
+
 // Start
 init();

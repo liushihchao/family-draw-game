@@ -26,6 +26,8 @@ body {
     color: var(--text-color);
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
+    /* Mobile viewport fix */
     overflow: hidden;
     /* Prevent scrolling */
 }

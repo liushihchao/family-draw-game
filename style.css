@@ -1,5 +1,6 @@
 :root {
-    --primary-color: #FF9800; /* Friendly Orange */
+    --primary-color: #FF9800;
+    /* Friendly Orange */
     --secondary-color: #FFCC80;
     --background-color: #FFF3E0;
     --text-color: #4E342E;
@@ -7,14 +8,15 @@
     --success-color: #66BB6A;
     --danger-color: #EF5350;
     --border-radius: 16px;
-    --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    user-select: none; /* Prevent text selection */
+    user-select: none;
+    /* Prevent text selection */
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -24,7 +26,8 @@ body {
     color: var(--text-color);
     width: 100vw;
     height: 100vh;
-    overflow: hidden; /* Prevent scrolling */
+    overflow: hidden;
+    /* Prevent scrolling */
 }
 
 #app {
@@ -73,8 +76,15 @@ body {
 }
 
 @keyframes popIn {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 h1.game-title {
@@ -182,11 +192,12 @@ h1.game-title {
     width: 100%;
     background: white;
     border-radius: var(--border-radius);
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
     margin: 10px 0;
     position: relative;
     overflow: hidden;
-    touch-action: none; /* Critical for canvas drawing */
+    touch-action: none;
+    /* Critical for canvas drawing */
 }
 
 canvas {
@@ -218,7 +229,7 @@ canvas {
     height: 36px;
     border-radius: 50%;
     border: 3px solid white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
 
@@ -230,6 +241,31 @@ canvas {
 .small-btn {
     padding: 5px 10px;
     font-size: 1rem;
+}
+
+.tool-btn {
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tool-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.tool-btn.active {
+    background-color: var(--text-color);
+    color: white;
 }
 
 /* Result Screen */

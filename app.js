@@ -19,6 +19,7 @@ const buttons = {
     restart: document.getElementById('btn-restart'),
     home: document.getElementById('btn-home'),
     clear: document.getElementById('btn-clear'),
+    eraser: document.getElementById('btn-eraser'),
     skip: document.getElementById('btn-skip'),
     correct: document.getElementById('btn-correct'),
     colors: document.querySelectorAll('.color-btn')
@@ -37,7 +38,8 @@ let state = {
     lastX: 0,
     lastY: 0,
     brushColor: '#000000',
-    brushSize: 5
+    brushSize: 5,
+    mode: 'draw' // 'draw' or 'erase'
 };
 
 // --- Initialization ---
@@ -58,13 +60,23 @@ function setupCanvas() {
         // Reset context properties after resize
         state.ctx.lineCap = 'round';
         state.ctx.lineJoin = 'round';
-        state.ctx.strokeStyle = state.brushColor;
-        state.ctx.lineWidth = state.brushSize;
+        restoreBrush();
     };
 
     window.addEventListener('resize', resizeCanvas);
     // Initial size setup with a small delay to ensure layout is ready
     setTimeout(resizeCanvas, 100);
+}
+
+function restoreBrush() {
+    if (state.mode === 'erase') {
+        state.ctx.globalCompositeOperation = 'destination-out';
+        state.ctx.lineWidth = 20; // Eraser is bigger
+    } else {
+        state.ctx.globalCompositeOperation = 'source-over';
+        state.ctx.strokeStyle = state.brushColor;
+        state.ctx.lineWidth = state.brushSize;
+    }
 }
 
 function setupEventListeners() {
@@ -78,6 +90,14 @@ function setupEventListeners() {
     buttons.correct.addEventListener('click', () => nextRound(true));
     buttons.clear.addEventListener('click', clearCanvas);
 
+    // Eraser
+    buttons.eraser.addEventListener('click', () => {
+        state.mode = 'erase';
+        buttons.colors.forEach(b => b.classList.remove('active'));
+        buttons.eraser.classList.add('active');
+        restoreBrush();
+    });
+
     // Topic Reveal
     ui.topicBtn.addEventListener('click', toggleTopicReveal);
     ui.topic.addEventListener('click', toggleTopicReveal);
@@ -85,13 +105,16 @@ function setupEventListeners() {
     // Drawing Tools
     buttons.colors.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            // Remove active class from all
+            state.mode = 'draw';
+            // Remove active class from all including eraser
             buttons.colors.forEach(b => b.classList.remove('active'));
+            buttons.eraser.classList.remove('active');
+
             // Add to clicked
             e.target.classList.add('active');
             // Set color
             state.brushColor = e.target.dataset.color;
-            state.ctx.strokeStyle = state.brushColor;
+            restoreBrush();
         });
     });
 
@@ -138,8 +161,7 @@ function startGame() {
         ui.canvas.height = parent.clientHeight;
         state.ctx.lineCap = 'round';
         state.ctx.lineJoin = 'round';
-        state.ctx.lineWidth = state.brushSize;
-        state.ctx.strokeStyle = state.brushColor;
+        restoreBrush();
     }, 50);
 
     nextRound(null); // Start first round

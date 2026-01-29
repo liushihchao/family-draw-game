@@ -1,0 +1,245 @@
+:root {
+    --primary-color: #FF9800; /* Friendly Orange */
+    --secondary-color: #FFCC80;
+    --background-color: #FFF3E0;
+    --text-color: #4E342E;
+    --card-bg: #FFFFFF;
+    --success-color: #66BB6A;
+    --danger-color: #EF5350;
+    --border-radius: 16px;
+    --shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none; /* Prevent text selection */
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Fredoka', 'Noto Sans TC', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Screens */
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+}
+
+.screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.screen.active {
+    opacity: 1;
+    z-index: 10;
+}
+
+/* Cards */
+.content-card {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+h1.game-title {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #8D6E63;
+    margin-bottom: 30px;
+}
+
+.rules {
+    text-align: left;
+    background: var(--background-color);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.rules li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* Buttons */
+.btn {
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    font-family: inherit;
+    margin: 10px;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 6px rgba(255, 152, 0, 0.3);
+}
+
+.secondary-btn {
+    background-color: #E0E0E0;
+    color: #616161;
+}
+
+.success-btn {
+    background-color: var(--success-color);
+    color: white;
+}
+
+/* Game Screen Layout */
+#game-screen {
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.game-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.topic-bar {
+    background: var(--card-bg);
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.topic-bar h2 {
+    font-size: 2rem;
+    color: var(--text-color);
+}
+
+.blur-reveal {
+    filter: blur(10px);
+    cursor: pointer;
+    transition: filter 0.3s;
+}
+
+.blur-reveal.revealed {
+    filter: blur(0);
+}
+
+.canvas-container {
+    flex-grow: 1;
+    width: 100%;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+    margin: 10px 0;
+    position: relative;
+    overflow: hidden;
+    touch-action: none; /* Critical for canvas drawing */
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+}
+
+.game-tools {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.drawing-tools {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.color-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.color-btn.active {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2px var(--text-color);
+}
+
+.small-btn {
+    padding: 5px 10px;
+    font-size: 1rem;
+}
+
+/* Result Screen */
+.final-score {
+    margin: 30px 0;
+}
+
+.score-number {
+    display: block;
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}

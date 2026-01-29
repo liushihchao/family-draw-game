@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>全家一起：你畫我猜</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for a friendly look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Start Screen -->
+        <section id="start-screen" class="screen active">
+            <div class="content-card">
+                <h1 class="game-title">🎨 你畫我猜</h1>
+                <p class="subtitle">家庭聚會專用版</p>
+                
+                <div class="rules">
+                    <h3>遊戲規則：</h3>
+                    <ol>
+                        <li>一個人看題目並畫出來</li>
+                        <li>其他人猜他在畫什麼</li>
+                        <li>答對點擊「答對了」，跳過按「跳過」</li>
+                    </ol>
+                </div>
+
+                <div class="controls">
+                    <button id="btn-start" class="btn primary-btn">開始遊戲</button>
+                    <!-- Future: Settings button -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Pre-Game / Topic Reveal (Optional, keeping simple for now) -->
+        
+        <!-- Game Screen -->
+        <section id="game-screen" class="screen hidden">
+            <header class="game-header">
+                <div class="timer-badge">⏱️ <span id="timer">60</span>s</div>
+                <div class="score-badge">⭐ <span id="score">0</span></div>
+            </header>
+
+            <div class="topic-bar">
+                <span class="label">題目：</span>
+                <h2 id="current-topic" class="blur-reveal">點擊顯示題目</h2>
+                <button id="btn-toggle-topic" class="btn small-btn">👁️</button>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="drawing-board"></canvas>
+            </div>
+
+            <footer class="game-tools">
+                <div class="drawing-tools">
+                    <button class="color-btn active" data-color="#000000" style="background-color: #000000;"></button>
+                    <button class="color-btn" data-color="#FF5252" style="background-color: #FF5252;"></button>
+                    <button class="color-btn" data-color="#448AFF" style="background-color: #448AFF;"></button>
+                    <button class="color-btn" data-color="#69F0AE" style="background-color: #69F0AE;"></button>
+                    <button id="btn-clear" class="tool-btn">🗑️ 清空</button>
+                </div>
+                
+                <div class="game-actions">
+                    <button id="btn-skip" class="btn secondary-btn">跳過</button>
+                    <button id="btn-correct" class="btn success-btn">✅ 答對了！</button>
+                </div>
+            </footer>
+        </section>
+
+        <!-- Result Screen -->
+        <section id="result-screen" class="screen hidden">
+            <div class="content-card result-card">
+                <h2>遊戲結束!</h2>
+                <div class="final-score">
+                    <span class="score-label">總得分</span>
+                    <span id="final-score-display" class="score-number">0</span>
+                </div>
+                
+                <div class="controls">
+                    <button id="btn-restart" class="btn primary-btn">再玩一次</button>
+                    <button id="btn-home" class="btn secondary-btn">回到首頁</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="words.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

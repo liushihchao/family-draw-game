@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -8,8 +9,11 @@
     <!-- Google Fonts for a friendly look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Noto+Sans+TC:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <div id="app">
         <!-- Start Screen -->
@@ -17,7 +21,7 @@
             <div class="content-card">
                 <h1 class="game-title">🎨 你畫我猜</h1>
                 <p class="subtitle">家庭聚會專用版</p>
-                
+
                 <div class="rules">
                     <h3>遊戲規則：</h3>
                     <ol>
@@ -35,7 +39,7 @@
         </section>
 
         <!-- Pre-Game / Topic Reveal (Optional, keeping simple for now) -->
-        
+
         <!-- Game Screen -->
         <section id="game-screen" class="screen hidden">
             <header class="game-header">
@@ -51,6 +55,7 @@
 
             <div class="canvas-container">
                 <canvas id="drawing-board"></canvas>
+                <div id="cursor-preview"></div>
             </div>
 
             <footer class="game-tools">
@@ -62,7 +67,7 @@
                     <button id="btn-eraser" class="tool-btn">🧽 橡皮擦</button>
                     <button id="btn-clear" class="tool-btn">🗑️ 清空</button>
                 </div>
-                
+
                 <div class="game-actions">
                     <button id="btn-skip" class="btn secondary-btn">跳過</button>
                     <button id="btn-correct" class="btn success-btn">✅ 答對了！</button>
@@ -78,7 +83,7 @@
                     <span class="score-label">總得分</span>
                     <span id="final-score-display" class="score-number">0</span>
                 </div>
-                
+
                 <div class="controls">
                     <button id="btn-restart" class="btn primary-btn">再玩一次</button>
                     <button id="btn-home" class="btn secondary-btn">回到首頁</button>
@@ -90,4 +95,5 @@
     <script src="words.js"></script>
     <script src="app.js"></script>
 </body>
+
 </html>
